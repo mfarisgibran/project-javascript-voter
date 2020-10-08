@@ -3,10 +3,6 @@ let votes = {
   option2: 0,
 };
 
-if (localStorage.getItem("votes")) {
-  votes = JSON.parse(localStorage.getItem("votes"));
-}
-
 const option1ButtonElement = document.getElementById("option-1");
 const option2ButtonElement = document.getElementById("option-2");
 
@@ -44,3 +40,9 @@ function voteOption2() {
 
 option1ButtonElement.addEventListener("click", voteOption1);
 option2ButtonElement.addEventListener("click", voteOption2);
+
+if (localStorage.getItem("votes")) {
+  votes = JSON.parse(localStorage.getItem("votes"));
+}
+
+calculateBothOptions();
