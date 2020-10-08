@@ -9,26 +9,31 @@ const option2ButtonElement = document.getElementById("option-2");
 const result1Element = document.getElementById("result-1");
 const result2Element = document.getElementById("result-2");
 
+function calculateBothOptions() {
+  let result1InPercentage =
+    (votes.option1 / (votes.option1 + votes.option2)) * 100;
+
+  let result1RoundedPercentage = result1InPercentage.toFixed(2);
+
+  let result2InPercentage =
+    (votes.option2 / (votes.option1 + votes.option2)) * 100;
+
+  let result2RoundedPercentage = result2InPercentage.toFixed(2);
+
+  result1Element.innerText = result1RoundedPercentage + "%";
+  result2Element.innerText = result2RoundedPercentage + "%";
+}
+
 function voteOption1() {
   votes.option1 += 1;
 
-  let resultInPercentage =
-    (votes.option1 / (votes.option1 + votes.option2)) * 100;
-
-  let roundedPercentage = resultInPercentage.toFixed(2);
-
-  result1Element.innerText = roundedPercentage + "%";
+  calculateBothOptions();
 }
 
 function voteOption2() {
   votes.option2 += 1;
 
-  let resultInPercentage =
-    (votes.option2 / (votes.option1 + votes.option2)) * 100;
-
-  let roundedPercentage = resultInPercentage.toFixed(2);
-
-  result2Element.innerText = roundedPercentage + "%";
+  calculateBothOptions();
 }
 
 option1ButtonElement.addEventListener("click", voteOption1);
