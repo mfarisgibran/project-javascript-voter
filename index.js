@@ -10,20 +10,22 @@ const result1Element = document.getElementById("result-1");
 const result2Element = document.getElementById("result-2");
 
 function calculateBothOptions() {
-  let result1InPercentage =
-    (votes.option1 / (votes.option1 + votes.option2)) * 100;
+  const totalVotes = votes.option1 + votes.option2;
 
-  let result1RoundedPercentage = result1InPercentage.toFixed(2);
+  if (totalVotes > 0) {
+    let result1InPercentage =
+      (votes.option1 / (votes.option1 + votes.option2)) * 100;
+    let result2InPercentage =
+      (votes.option2 / (votes.option1 + votes.option2)) * 100;
 
-  let result2InPercentage =
-    (votes.option2 / (votes.option1 + votes.option2)) * 100;
+    let result1RoundedPercentage = result1InPercentage.toFixed(2);
+    let result2RoundedPercentage = result2InPercentage.toFixed(2);
 
-  let result2RoundedPercentage = result2InPercentage.toFixed(2);
+    result1Element.innerText = result1RoundedPercentage + "%";
+    result2Element.innerText = result2RoundedPercentage + "%";
 
-  result1Element.innerText = result1RoundedPercentage + "%";
-  result2Element.innerText = result2RoundedPercentage + "%";
-
-  localStorage.setItem("votes", JSON.stringify(votes));
+    localStorage.setItem("votes", JSON.stringify(votes));
+  }
 }
 
 function voteOption1() {
