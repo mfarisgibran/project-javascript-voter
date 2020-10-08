@@ -1,4 +1,4 @@
-const votes = {
+let votes = {
   option1: 0,
   option2: 0,
 };
@@ -22,6 +22,8 @@ function calculateBothOptions() {
 
   result1Element.innerText = result1RoundedPercentage + "%";
   result2Element.innerText = result2RoundedPercentage + "%";
+
+  localStorage.setItem("votes", JSON.stringify(votes));
 }
 
 function voteOption1() {
@@ -38,3 +40,9 @@ function voteOption2() {
 
 option1ButtonElement.addEventListener("click", voteOption1);
 option2ButtonElement.addEventListener("click", voteOption2);
+
+if (localStorage.getItem("votes")) {
+  votes = JSON.parse(localStorage.getItem("votes"));
+}
+
+calculateBothOptions();
